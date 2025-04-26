@@ -1,16 +1,22 @@
 "use client"
+import CodeEditor from "@/components/CodeEditor";
 import Navbar from "@/components/Navbar";
 import { useParams } from "next/navigation";
 
-const Home = ()=>{
+const Page = ()=>{
     const params = useParams();
     const paramLangauge = params.language;
-    console.log(paramLangauge);
     let compiler;
     let language;
     let version
-    if(typeof paramLangauge == "string"){
-        compiler = decodeURIComponent(paramLangauge);
+    
+    if(typeof paramLangauge == "undefined"){
+        return (<>
+        wrong language
+        </>)
+    }
+    else{
+        compiler = decodeURIComponent(paramLangauge as string);
         const words = compiler.split(" (");
         language = words[0];
         if(words.length >1){
@@ -26,7 +32,10 @@ const Home = ()=>{
         Your online <b>{language} </b> Compiler
         {version && <p>  with version <b>{version}</b></p>}
         </div>
+        <div className="flex justify-center items-center">
+        <CodeEditor language ={language?.toLowerCase() as string}/>
+        </div>
         </>
     )
 }
-export default Home;
+export default Page;
