@@ -1,4 +1,5 @@
 "use client"
+import { fontBitter, spaceMonoHeavy } from "@/app/layout";
 import CodeEditor from "@/components/CodeEditor";
 import Navbar from "@/components/Navbar";
 import { useParams } from "next/navigation";
@@ -23,19 +24,20 @@ const Page = ()=>{
             version = words[words.length-1];
             version = version.slice(0,version.length-1);
         }
-        console.log(words)
     }
     return (
-        <>
-        <Navbar />
-        <div className="flex gap-2">
-        Your online <b>{language} </b> Compiler
-        {version && <p>  with version <b>{version}</b></p>}
-        </div>
-        <div className="flex justify-center items-center">
-        <CodeEditor language ={language?.toLowerCase() as string}/>
-        </div>
-        </>
+        <section className="w-full h-full bg-[#dfb79f]">
+            <Navbar />
+            <div className={`${fontBitter.className} w-full px-2`}>
+                <h2 className={`flex text-[40px]  text-[#4c3440] font-semibold`}>
+                    <>Your online {language} Compiler {version && <>with version {version}</>}
+                    </>
+                </h2>
+            </div>
+            <div className="flex justify-center items-center">
+                <CodeEditor language ={language?.toLowerCase() as string}/>
+            </div>
+        </section>
     )
 }
 export default Page;

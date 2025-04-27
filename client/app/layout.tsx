@@ -1,5 +1,6 @@
-import { Geist, Geist_Mono,Space_Mono } from "next/font/google";
+import { Geist, Geist_Mono,Space_Mono,Bitter } from "next/font/google";
 import "./globals.css";
+import { Weight } from "lucide-react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,6 +18,12 @@ export const spaceMonoHeavy = Space_Mono({
   style :"normal",
   subsets :["latin"],
   variable : "--font-space-mono",
+})
+export const fontBitter = Bitter({
+  weight:['100','200','300','400','500','600','700','800','900'],
+  style:['italic','normal'],
+  subsets:['latin'],
+  variable:'--font-bitter'
 })
 export default function RootLayout({
   children,
