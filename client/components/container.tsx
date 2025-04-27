@@ -21,7 +21,10 @@ const Container = ()=>{
 
                     <select name="langauges" id="languages" value={selected} onChange={(e)=>setSelected(e.target.value)} className="border-2 border-[#97866A] text-xl rounded-sm hover:border-4">
                         {languages.map((language, index)=>{
-                            return <option key={index} value={language.name} className="text-md">{language.name} </option>
+                            return <option key={index} value={language.name} 
+                            className="text-md">
+                                {language.name}
+                            </option>
                         })}
                     </select>
                     <Link href={`/playground/${selected}`}> <ArrowRightCircle size={30} /> 

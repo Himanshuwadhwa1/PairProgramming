@@ -2,6 +2,7 @@
 import { fontBitter, spaceMonoHeavy } from "@/app/layout";
 import CodeEditor from "@/components/CodeEditor";
 import Navbar from "@/components/Navbar";
+import ToolBar from "@/components/toolsBar";
 import { useParams } from "next/navigation";
 
 const Page = ()=>{
@@ -28,11 +29,12 @@ const Page = ()=>{
     return (
         <section className="w-full h-full bg-[#dfb79f]">
             <Navbar />
-            <div className={`${fontBitter.className} w-full px-2`}>
+            <div className={`flex ${fontBitter.className} w-full justify-around`}>
                 <h2 className={`flex text-[40px]  text-[#4c3440] font-semibold`}>
                     <>Your online {language} Compiler {version && <>with version {version}</>}
                     </>
                 </h2>
+                <ToolBar />
             </div>
             <div className="flex justify-center items-center">
                 <CodeEditor language ={language?.toLowerCase() as string}/>

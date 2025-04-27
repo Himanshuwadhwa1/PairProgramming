@@ -29,6 +29,25 @@ const CodeEditor = ({ language }: { language: string }) => {
                 theme="hc-black"
                 onChange={handleChange}
                 loading={spinner}
+                options={{
+                    fontSize: 16,
+                    fontFamily: 'Jetbrains-Mono',
+                    fontLigatures: true,
+                    wordWrap: 'on',
+                    minimap: {
+                      enabled: false
+                    },
+                    bracketPairColorization: {
+                      enabled: true
+                    },
+                    cursorBlinking: 'smooth',
+                    formatOnPaste: true,
+                    cursorStyle:'block',
+                    suggest: {
+                      showFields: true,
+                      showFunctions: true
+                    }
+                  }}
             />
         </section>
     );
