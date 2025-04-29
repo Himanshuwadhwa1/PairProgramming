@@ -2,16 +2,17 @@
 import { fontBitter, spaceMonoHeavy } from "@/app/layout";
 import CodeEditor from "@/components/CodeEditor";
 import Navbar from "@/components/Navbar";
-import ToolBar from "@/components/toolsBar";
+import { themes } from "@/lib/theme";
 import { useParams } from "next/navigation";
+import { useState } from "react";
 
 const Page = ()=>{
+    const [theme,setTheme] = useState<string>("birds-of-paradise");
     const params = useParams();
     const paramLangauge = params.language;
     let compiler;
     let language;
-    let version
-    
+    let version;
     if(typeof paramLangauge == "undefined"){
         return (<>
         wrong language
@@ -34,10 +35,23 @@ const Page = ()=>{
                     <>Your online {language} Compiler {version && <>with version {version}</>}
                     </>
                 </h2>
-                <ToolBar />
+
+
+                <section className={`flex gap-1 items-center ${fontBitter.className}`}>
+                    <h3 className="text-xl font-semibold">Editor Themes :</h3>
+                    <select name="theme" id="theme" value={theme} onChange={(e)=>setTheme(e.target.value)}
+                    className="border-2 border-[#97866A] text-xl rounded-sm bg-[#604652] text-amber-100 w-70">
+                        {themes.map((theme)=>{
+                            return <option key={theme.id} value={theme.id} className="text-md text-center">
+                                {theme.name}
+                                </option>
+                        })}
+                    </select>
+                </section>
+
             </div>
             <div className="flex justify-center items-center">
-                <CodeEditor language ={language?.toLowerCase() as string}/>
+                <CodeEditor language ={language?.toLowerCase() as string} theme={theme}/>
             </div>
         </section>
     )
