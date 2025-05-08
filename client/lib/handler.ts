@@ -5,8 +5,13 @@ type bodyType = {
     language : number
 }
 // overfetching
+const config = {
+    headers: {
+        'Content-Type': 'application/json',
+      },
+}
 export async function runHandler(body:bodyType){
-    const response = await Axios.post(`${serverURL}/api/submission`,body);
+    const response = await Axios.post(`${serverURL}/api/submission`,JSON.stringify(body), config);
     const data = await response.data;
     console.log(data);
 }

@@ -20,7 +20,7 @@ export async function submOutput(req:Request<{},{},CodeRequestBody>,res:Response
             headers:config
         });
         const {token} = await response.data;
-        
+        console.log(token);
         if(token){
             let submissionStatus = false;
             let output = null;
@@ -32,10 +32,16 @@ export async function submOutput(req:Request<{},{},CodeRequestBody>,res:Response
                 const responseSub = await axios.get(`${JUDGE_URL}/submissions/${token}?base64_encoded=true&fields=*`,{
                     headers:config
                 });
-                const subOutput = responseSub.data;
+                const subOutput = await responseSub.data;
                 if(subOutput.stderr){
                     const err = atob(subOutput.stderr);
+                    submissionStatus = true;
                     return res.status(400).json({msg:err});
+                }
+                if(subOutput.status &&  subOutput.status.id == 6){
+                    submissionStatus=true;
+                    output = subOutput;
+                    return res.status(200).json({msg:output});
                 }
                 if(subOutput.status &&  subOutput.status.id == 3 && subOutput.status.description == "Accepted"){
                     submissionStatus=true;
