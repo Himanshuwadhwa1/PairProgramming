@@ -3,12 +3,14 @@ import { themeMap } from "@/lib/theme";
 import { Editor, useMonaco } from "@monaco-editor/react";
 import { useEffect, useState } from "react";
 import { ClockLoader } from "react-spinners";
+import Tools from "./Tools";
 interface editorProp {
   language : string,
   theme : string,
+  paramLang ?: string,
 }
 
-const CodeEditor = ({ language,theme }: editorProp) => {
+const CodeEditor = ({ language,theme,paramLang }: editorProp) => {
     const [code, setCode] = useState<string>("# write code");
     const monaco = useMonaco();
     const handleChange = (value: string | undefined) => {
@@ -20,7 +22,6 @@ const CodeEditor = ({ language,theme }: editorProp) => {
     speedMultiplier={4}
     cssOverride={{backgroundColor:"#604652"}}
     />)
-    console.log(theme, language);
     
     useEffect(() => {
 
@@ -35,7 +36,6 @@ const CodeEditor = ({ language,theme }: editorProp) => {
           if(themeLoader){
             try {
               const themeData = await themeLoader();
-              console.log(themeData)
               monaco?.editor.defineTheme(theme,themeData);
               monaco?.editor.setTheme(theme);
               return
@@ -81,6 +81,7 @@ const CodeEditor = ({ language,theme }: editorProp) => {
                     }
                   }}
             />
+            <Tools code={code} language={paramLang as string} />
         </section>
     );
 };

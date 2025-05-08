@@ -51,7 +51,7 @@ const Page = ()=>{
 
             </div>
             <div className="flex justify-center items-center">
-                <CodeEditor language ={language?.toLowerCase() as string} theme={theme}/>
+                <CodeEditor language ={language?.toLowerCase() as string} paramLang={compiler as string} theme={theme}/>
             </div>
         </section>
     )
