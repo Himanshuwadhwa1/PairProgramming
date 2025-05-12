@@ -20,7 +20,6 @@ export async function submOutput(req:Request<{},{},CodeRequestBody>,res:Response
             headers:config
         });
         const {token} = await response.data;
-        console.log(token);
         if(token){
             let submissionStatus = false;
             let output = null;

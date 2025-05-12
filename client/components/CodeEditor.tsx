@@ -4,6 +4,7 @@ import { Editor, useMonaco } from "@monaco-editor/react";
 import { useEffect, useState } from "react";
 import { ClockLoader } from "react-spinners";
 import Tools from "./Tools";
+import Output from "./Output";
 interface editorProp {
   language : string,
   theme : string,
@@ -11,7 +12,7 @@ interface editorProp {
 }
 
 const CodeEditor = ({ language,theme,paramLang }: editorProp) => {
-    const [code, setCode] = useState<string>("# write code");
+    const [code, setCode] = useState<string>("// write code");
     const monaco = useMonaco();
     const handleChange = (value: string | undefined) => {
         setCode(value || "");
@@ -51,7 +52,7 @@ const CodeEditor = ({ language,theme,paramLang }: editorProp) => {
     }, [monaco,theme]);
     
     return (
-        <section className="flex justify-start w-full px-2">
+        <section className="flex justify-start w-full h-fit px-2">
             <Editor
                 defaultValue={`// ${language}`}
                 language={language}
@@ -81,7 +82,10 @@ const CodeEditor = ({ language,theme,paramLang }: editorProp) => {
                     }
                   }}
             />
-            <Tools code={code} language={paramLang as string} />
+            <div className="flex flex-col gap-3">
+              <Tools code={code} language={paramLang as string} />
+              <Output />
+            </div>
         </section>
     );
 };

@@ -12,6 +12,7 @@ const Page = ()=>{
     const paramLangauge = params.language;
     let compiler;
     let language;
+    let versions;
     let version;
     if(typeof paramLangauge == "undefined"){
         return (<>
@@ -23,16 +24,18 @@ const Page = ()=>{
         const words = compiler.split(" (");
         language = words[0];
         if(words.length >1){
-            version = words[words.length-1];
-            version = version.slice(0,version.length-1);
+            versions = words[words.length-1];
+            versions = versions.slice(0,versions.length-1);
+            const versionArr = versions.split(" ");
+            version = versionArr[1];
         }
     }
     return (
         <section className="w-full h-full bg-[#dfb79f]">
             <Navbar />
             <div className={`flex ${fontBitter.className} w-full justify-around`}>
-                <h2 className={`flex text-[40px]  text-[#4c3440] font-semibold`}>
-                    <>Your online {language} Compiler {version && <>with version {version}</>}
+                <h2 className={`flex gap-1 text-[40px]  text-[#4c3440] font-semibold`}>
+                    <>Your online <b>{language} </b> Compiler {version && <>with version <i> {version} </i>  </>}
                     </>
                 </h2>
 
