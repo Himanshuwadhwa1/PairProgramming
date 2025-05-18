@@ -34,7 +34,7 @@ const Page = ()=>{
         <section className="w-full h-full bg-[#dfb79f]">
             <Navbar />
             <div className={`flex ${fontBitter.className} w-full justify-around`}>
-                <h2 className={`flex gap-1 text-[40px]  text-[#4c3440] font-semibold`}>
+                <h2 className={`flex gap-2 text-[40px]  text-[#4c3440] font-semibold`}>
                     <>Your online <b>{language} </b> Compiler {version && <>with version <i> {version} </i>  </>}
                     </>
                 </h2>

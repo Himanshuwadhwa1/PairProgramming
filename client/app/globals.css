@@ -129,6 +129,9 @@
     @apply  text-[#614446e2] text-3xl;
   }
   .areaText{
-    @apply border-2 border-[#735557] rounded-2xl bg-amber-100 text-xl ;
+    @apply border-2 border-[#735557] rounded-2xl bg-amber-100 text-xl px-10 mx-3 ;
+  }
+  .output{
+    @apply h-fit w-full bg-amber-100 ;
   }
 }

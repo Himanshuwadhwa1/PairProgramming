@@ -82,7 +82,7 @@ const CodeEditor = ({ language,theme,paramLang }: editorProp) => {
                     }
                   }}
             />
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-4">
               <Tools code={code} language={paramLang as string} />
               <Output />
             </div>
