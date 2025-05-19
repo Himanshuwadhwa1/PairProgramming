@@ -2,6 +2,8 @@
 import { fontBitter, spaceMonoHeavy } from "@/app/layout";
 import CodeEditor from "@/components/CodeEditor";
 import Navbar from "@/components/Navbar";
+import { InputProvider } from "@/context/inputContext";
+import { OutputProvider } from "@/context/outputContext";
 import { themes } from "@/lib/theme";
 import { useParams } from "next/navigation";
 import { useState } from "react";
@@ -53,9 +55,13 @@ const Page = ()=>{
                 </section>
 
             </div>
-            <div className="flex justify-center items-center">
-                <CodeEditor language ={language?.toLowerCase() as string} paramLang={compiler as string} theme={theme}/>
-            </div>
+            <InputProvider>
+            <OutputProvider>
+                <div className="flex justify-center items-center">
+                    <CodeEditor language ={language?.toLowerCase() as string} paramLang={compiler as string} theme={theme}/>
+                </div>
+            </OutputProvider>
+            </InputProvider>
         </section>
     )
 }

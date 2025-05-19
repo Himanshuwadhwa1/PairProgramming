@@ -1,10 +1,11 @@
 import { fontBitter, spaceMonoHeavy } from "@/app/layout";
+import { useInput } from "@/custom-hooks/input";
+import { useOutput } from "@/custom-hooks/output";
 import { useState } from "react";
 
 export default function Output(){
-    const [output,setOutput] = useState<string | undefined>("");
-    const [input,setInput] = useState<string | undefined>("");
-    const [error,setError] = useState<string | undefined>("");
+    const {output} = useOutput();
+    const {input,setInput} = useInput();
     return(
         <section className={`${spaceMonoHeavy.className} flex flex-col w-full h-120`}>
             <label htmlFor="input" className="h-fit">
@@ -15,9 +16,11 @@ export default function Output(){
             </label>
             
             <textarea name="input" id="input" value={input} onChange={(e)=>setInput(e.target.value)} placeholder="1,2,3..." rows={2} cols={30} className="areaText"/>
+            {output &&(    
             <div className="output">
                 {output}
             </div>
+            )}
         </section>
     )
 }

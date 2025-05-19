@@ -132,6 +132,6 @@
     @apply border-2 border-[#735557] rounded-2xl bg-amber-100 text-xl px-10 mx-3 ;
   }
   .output{
-    @apply h-fit w-full bg-amber-100 ;
+    @apply h-fit w-120 bg-amber-100 py-2 px-4 m-3 flex items-center rounded-sm;
   }
 }
